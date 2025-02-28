@@ -70,7 +70,7 @@ const Index = () => {
         </div>
 
         {/* Creator Search Section - Added between Hero and How It Works */}
-        <div className="bg-white">
+        <div className="py-12 sm:py-16 bg-white">
           <CreatorSearchSection />
         </div>
 
