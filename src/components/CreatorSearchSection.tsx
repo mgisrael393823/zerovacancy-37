@@ -14,12 +14,20 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-export function Section() {
+interface DBFINALProps {
+  className?: string;
+}
+
+export function DBFINAL({ className }: DBFINALProps) {
   return (
     <div
       style={{ background: "linear-gradient(to bottom, #F1F0FB, #FFFFFF)" }}
-      className="w-[95%] max-w-[1100px] mx-auto rounded-xl shadow-lg h-[450px] overflow-hidden pt-4 pb-[1px] font-sans border border-[#7358f9] pr-[5px] pl-4"
+      className={cn(
+        "w-[95%] max-w-[1100px] mx-auto rounded-xl shadow-lg h-[450px] overflow-hidden pt-4 pb-[1px] font-sans border border-[#7358f9] pr-[5px] pl-4",
+        className,
+      )}
     >
       <div className="flex gap-6 h-full">
         <div className="w-[260px] border-r border-border/20 pr-4 h-full overflow-y-auto">
@@ -317,7 +325,7 @@ export function Section() {
             <Card className="bg-secondary/50 shadow-md rounded-lg border-[#7358f9] flex mb-[-5px]">
               <CardContent className="block px-3 pt-3 pb-[-5px]">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg flex-shrink-0 bg-muted border border-[#7358f9]" />
+                  <div className="w-10 h-10 bg-muted rounded-lg flex-shrink-0 border border-[#7358f9]" />
                   <div>
                     <div className="flex items-center gap-1 mb-1">
                       <h3 className="font-heading text-xs font-semibold text-primary">
