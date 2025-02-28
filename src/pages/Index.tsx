@@ -63,9 +63,8 @@ const Index = () => {
         </div>}
 
       <main className="flex-1 pb-16 sm:pb-0">
-        {/* Hero Section */}
-        <div className="relative overflow-hidden">
-          <Spotlight className="from-purple-500/20 via-violet-500/20 to-blue-500/20" size={400} />
+        {/* Hero Section - No animations or colors */}
+        <div className="relative overflow-hidden bg-white">
           <Hero />
         </div>
 
