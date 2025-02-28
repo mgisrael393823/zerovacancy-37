@@ -98,7 +98,8 @@ const Index = () => {
 
           {/* Pricing Section - Adjusted spacing */}
           <div id="pricing" className="relative py-10 sm:py-16 lg:py-20 overflow-hidden bg-white border-b border-gray-100">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f3f3f3_1px,transparent_1px),linear-gradient(to_bottom,#f3f3f3_1px,transparent_1px)] [background-size:20px_20px] opacity-30"></div>
+            {/* Removed background pattern */}
+            <div className="absolute inset-0 bg-white"></div>
             <Spotlight className="from-indigo-500/20 via-purple-500/20 to-pink-500/20" size={350} />
             <div className="relative z-10 max-w-7xl mx-auto">
               <Pricing />
