@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { WaitlistCTA } from "./ui/waitlist-cta";
+import { CreatorSearchSection } from "./CreatorSearchSection";
 
 export function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -84,7 +85,12 @@ export function Hero() {
           </div>
           
           <div className={cn("w-full", "mt-4 sm:mt-6", "px-4 sm:px-6")}>
-            <WaitlistCTA className="mb-10" />
+            <WaitlistCTA className="mb-6" />
+          </div>
+          
+          {/* Creator Search Section added below WaitlistCTA */}
+          <div className="w-full mt-4">
+            <CreatorSearchSection className="mx-auto" />
           </div>
         </section>
       </div>

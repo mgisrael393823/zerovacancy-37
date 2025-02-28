@@ -16,7 +16,6 @@ import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { FeaturesSectionWithHoverEffects } from '@/components/Features';
 import Pricing from '@/components/Pricing';
 import { AuroraBackground } from '@/components/ui/aurora-background';
-import { CreatorSearchSection } from '@/components/CreatorSearchSection';
 
 const Index = () => {
   const [showBanner, setShowBanner] = useState(true);
@@ -67,11 +66,6 @@ const Index = () => {
         {/* Hero Section - No animations or colors */}
         <div className="relative overflow-hidden bg-white">
           <Hero />
-        </div>
-
-        {/* Creator Search Section - Added between Hero and How It Works */}
-        <div className="py-12 sm:py-16 bg-white">
-          <CreatorSearchSection />
         </div>
 
         <div className="space-y-0">
