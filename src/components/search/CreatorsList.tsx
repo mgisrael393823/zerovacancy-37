@@ -97,7 +97,7 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
   ];
 
   return (
-    <div className="w-full space-y-2 sm:space-y-6">
+    <div className="w-full space-y-2 sm:space-y-6 bg-white">
       {/* Sort menu div - completely removed for now */}
       {false && (
         <div className={cn(
@@ -113,7 +113,7 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
       )}
 
       {isMobile ? (
-        <div className="w-full relative">
+        <div className="w-full relative bg-white">
           <div className="w-full overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {creators.map((creator, index) => (
@@ -136,7 +136,7 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
           <button
             onClick={scrollPrev}
             className={cn(
-              "absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 bg-black/30 text-white backdrop-blur-sm transition-opacity",
+              "absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 bg-gray-200 text-gray-700",
               !prevBtnEnabled && "opacity-0 pointer-events-none"
             )}
             aria-label="Previous creator"
@@ -146,7 +146,7 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
           <button
             onClick={scrollNext}
             className={cn(
-              "absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 bg-black/30 text-white backdrop-blur-sm transition-opacity",
+              "absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 bg-gray-200 text-gray-700",
               !nextBtnEnabled && "opacity-0 pointer-events-none"
             )}
             aria-label="Next creator"
@@ -160,8 +160,8 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
               <button
                 key={index}
                 className={cn(
-                  "w-2 h-2 rounded-full transition-colors",
-                  index === selectedIndex ? "bg-primary" : "bg-gray-300"
+                  "w-2 h-2 rounded-full",
+                  index === selectedIndex ? "bg-gray-500" : "bg-gray-300"
                 )}
                 onClick={() => emblaApi?.scrollTo(index)}
                 aria-label={`Go to creator ${index + 1}`}
@@ -170,7 +170,7 @@ export const CreatorsList: React.FC<CreatorsListProps> = ({
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 bg-white">
           {creators.map((creator) => (
             <CreatorCard
               key={creator.name}

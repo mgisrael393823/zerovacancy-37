@@ -8,8 +8,6 @@ import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { CreatorRating } from './CreatorRating';
 import { GlowDialog } from '../ui/glow-dialog';
-import { ShimmerButton } from '../ui/shimmer-button';
-import { BorderBeam } from '../ui/border-beam';
 
 interface Creator {
   name: string;
@@ -77,19 +75,8 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
   };
 
   const getTagStyle = (tag: string) => {
-    if (['#RealEstate', '#Aerial', '#IndoorDroneTour'].includes(tag)) {
-      return "bg-[#E5DEFF] text-[#4F46E5] hover:bg-[#D6BCFA] hover:text-[#3730A3] border border-[#4F46E5]/10";
-    }
-    if (['#Interior', '#Design', '#Staging'].includes(tag)) {
-      return "bg-[#F2FCE2] text-[#3B823E] hover:bg-[#DCF5DC] hover:text-[#2E6A31] border border-[#3B823E]/10";
-    }
-    if (['#POV', '#TikTok', '#ComeTourWithMe'].includes(tag)) {
-      return "bg-[#FDE1D3] text-[#C4704F] hover:bg-[#FECDA7] hover:text-[#9D5B3F] border border-[#C4704F]/10";
-    }
-    if (['#3DTours', '#FloorPlans', '#Interactive'].includes(tag)) {
-      return "bg-[#E0F2FE] text-[#0369A1] hover:bg-[#BAE6FD] hover:text-[#0284C7] border border-[#0EA5E9]/10";
-    }
-    return "bg-[#F3F4F6] text-gray-600 hover:bg-gray-200 hover:text-gray-800 border border-gray-200";
+    // Using only gray for all tags
+    return "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800 border border-gray-200";
   };
 
   const tags = creator.tags || getDefaultTags(creator.name, creator.services);
@@ -115,38 +102,11 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
   const media = getMedia();
   
   return (
-    <article className="group select-text">
-      <Card className={cn(
-        "overflow-hidden h-full",
-        "will-change-transform transition-all duration-300",
-        "hover:translate-y-[-2px] hover:scale-[1.01]",
-        "bg-white border border-gray-200/80",
-        "shadow-[0_2px_8px_rgba(0,0,0,0.05)]",
-        "hover:shadow-[0_8px_16px_rgba(0,0,0,0.08)]",
-        "rounded-xl relative"
-      )}>
-        {/* Animated border around the entire card */}
-        <BorderBeam 
-          colorFrom="#9c40ff" 
-          colorTo="#3182CE" 
-          duration={20} 
-          borderWidth={1.2} 
-          size={500}
-          className="rounded-xl"
-        />
-        
+    <article>
+      <Card className="overflow-hidden h-full bg-white border border-gray-200 shadow-sm rounded-xl">
         <div className="relative">
           <div className="absolute top-2 sm:top-3 right-2 sm:right-3 z-10">
-            <span className={cn(
-              "px-2 sm:px-2.5 py-1",
-              "text-xs sm:text-sm font-medium",
-              "bg-white/95 backdrop-blur-sm",
-              "text-gray-900 rounded-full",
-              "shadow-sm border border-white/30",
-              "transition-all duration-200",
-              "group-hover:shadow-md",
-              "group-hover:bg-white"
-            )}>
+            <span className="px-2 sm:px-2.5 py-1 text-xs sm:text-sm font-medium bg-white text-gray-900 rounded-full shadow-sm border border-gray-100">
               From ${creator.price}
             </span>
           </div>
@@ -176,12 +136,12 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
                 />
                 {/* Fallback image that shows while video is loading */}
                 {!isVideoLoaded && (
-                  <div className="absolute inset-0 bg-gray-200 animate-pulse"></div>
+                  <div className="absolute inset-0 bg-gray-200"></div>
                 )}
               </>
             )}
             <div 
-              className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" 
+              className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" 
               aria-hidden="true"
             />
             
@@ -189,12 +149,7 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <h3 className="font-semibold text-base sm:text-xl">{creator.name}</h3>
                 <CheckCircle 
-                  className={cn(
-                    "w-4 h-4 sm:w-5 sm:h-5 text-blue-400",
-                    "transition-all duration-300",
-                    "group-hover:text-blue-300",
-                    "group-hover:drop-shadow-[0_0_3px_rgba(59,130,246,0.5)]"
-                  )}
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-gray-200"
                   aria-label="Verified Creator"
                 />
               </div>
@@ -211,7 +166,7 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
             </div>
           </div>
           
-          <div className="p-3 sm:p-4 flex flex-col h-[180px]">
+          <div className="p-3 sm:p-4 flex flex-col h-[180px] bg-white">
             <div className="flex flex-col h-full">
               {/* Tags section - fixed height */}
               <div className="mb-3">
@@ -224,10 +179,7 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
                     {tags.map((tag, index) => (
                       <span
                         key={index}
-                        className={cn(
-                          "text-[10px] sm:text-xs px-2 py-1 rounded-full transition-colors duration-200 whitespace-nowrap",
-                          getTagStyle(tag)
-                        )}
+                        className="text-[10px] sm:text-xs px-2 py-1 rounded-full whitespace-nowrap bg-gray-100 text-gray-600 border border-gray-200"
                         role="listitem"
                       >
                         {tag}
@@ -244,14 +196,14 @@ export const CreatorCard: React.FC<CreatorCardProps> = ({
               
               {/* Button section - fixed at bottom with consistent height */}
               <div className="flex justify-center mt-3">
-                <ShimmerButton 
+                <Button 
                   onClick={() => setShowEmailDialog(true)}
                   aria-label={`Join waitlist to work with ${creator.name}`}
-                  className="w-[70%] h-9 sm:h-10 text-xs sm:text-sm px-3 sm:px-4"
+                  className="w-[70%] h-9 sm:h-10 text-xs sm:text-sm px-3 sm:px-4 bg-gray-800 hover:bg-gray-700 text-white"
                 >
                   <span>Join Waitlist</span>
                   <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1" aria-hidden="true" />
-                </ShimmerButton>
+                </Button>
               </div>
             </div>
           </div>
