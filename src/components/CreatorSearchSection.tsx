@@ -16,11 +16,11 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-interface DBFINALProps {
+interface CreatorSearchSectionProps {
   className?: string;
 }
 
-export function DBFINAL({ className }: DBFINALProps) {
+export function CreatorSearchSection({ className }: CreatorSearchSectionProps) {
   return (
     <div
       style={{ background: "linear-gradient(to bottom, #F1F0FB, #FFFFFF)" }}
@@ -354,3 +354,6 @@ export function DBFINAL({ className }: DBFINALProps) {
     </div>
   );
 }
+
+// For backward compatibility, also export the component as DBFINAL
+export const DBFINAL = CreatorSearchSection;
