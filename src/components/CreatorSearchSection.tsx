@@ -1,158 +1,41 @@
 
-"use client";
-
-import { Search, LayoutGrid, Save, Star } from "lucide-react";
-import { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
-
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import { Card, CardContent } from "@/components/ui/card";
-
-export const ContainerScroll = ({
-  titleComponent,
-  children,
-}: {
-  titleComponent: string | React.ReactNode;
-  children: React.ReactNode;
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-  });
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
-
-  const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
-  };
-
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
+export function CreatorSearchPreview() {
   return (
-    <div
-      className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
-      ref={containerRef}
-    >
-      <div
-        className="py-10 md:py-40 w-full relative"
-        style={{
-          perspective: "1000px",
-        }}
-      >
-        <Header translate={translate} titleComponent={titleComponent} />
-        <Card rotate={rotate} translate={translate} scale={scale}>
-          {children}
-        </Card>
-      </div>
-    </div>
-  );
-};
-
-export const Header = ({ translate, titleComponent }: any) => {
-  return (
-    <motion.div
-      style={{
-        translateY: translate,
-      }}
-      className="div max-w-5xl mx-auto text-center"
-    >
-      {titleComponent}
-    </motion.div>
-  );
-};
-
-export const AnimatedCard = ({
-  rotate,
-  scale,
-  translate,
-  children,
-}: {
-  rotate: MotionValue<number>;
-  scale: MotionValue<number>;
-  translate: MotionValue<number>;
-  children: React.ReactNode;
-}) => {
-  return (
-    <motion.div
-      style={{
-        rotateX: rotate,
-        scale,
-        boxShadow:
-          "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
-      }}
-      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
-    >
-      <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4">
-        {children}
-      </div>
-    </motion.div>
-  );
-};
-
-export function CreatorSearchSection() {
-  const creatorSearchContent = (
     <div 
-      className="w-full max-w-full mx-auto rounded-xl shadow-lg h-full overflow-hidden px-4 pt-4 pb-4 font-sans bg-white"
+      className="w-full max-w-full mx-auto rounded-xl shadow-lg h-full overflow-hidden px-4 pt-4 pb-4 font-sans bg-white pointer-events-none select-none"
     >
       <div className="flex gap-4 h-full">
-        <div className="w-[220px] border-r border-border/20 pr-4 h-full overflow-y-auto">
+        <div className="w-[220px] border-r border-border/20 pr-4 h-full">
           <div className="relative mb-3">
-            <Input
-              placeholder="Search creators..."
-              className="pl-9 bg-secondary/50 ring-accent/20 focus:ring-2 rounded-lg border-[#7358F9]"
-            />
-            <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            <div 
+              className="pl-9 bg-secondary/50 rounded-lg border-[#7358F9] border h-9 w-full opacity-50"
+            >
+              <div className="absolute left-3 top-3 h-4 w-4 text-muted-foreground">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+            </div>
           </div>
           <div className="space-y-3">
             <div>
               <h4 className="font-heading text-xs mb-2 text-primary font-medium">Content Type</h4>
               <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <Checkbox id="photo" className="h-3 w-3" />
-                  <Label htmlFor="photo" className="text-xs text-muted-foreground">
-                    Photography
-                  </Label>
+                <div className="flex items-center gap-2 opacity-50">
+                  <div className="w-3 h-3 border rounded bg-gray-200" />
+                  <span className="text-xs text-muted-foreground">Photography</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Checkbox id="video" className="h-3 w-3" />
-                  <Label htmlFor="video" className="text-xs text-muted-foreground">
-                    Videography
-                  </Label>
+                <div className="flex items-center gap-2 opacity-50">
+                  <div className="w-3 h-3 border rounded bg-gray-200" />
+                  <span className="text-xs text-muted-foreground">Videography</span>
                 </div>
               </div>
             </div>
             <div>
               <h4 className="font-heading text-xs mb-2 text-primary font-medium">Distance</h4>
               <div className="grid grid-cols-2 gap-1">
-                <Button size="sm" variant="outline" className="text-[10px] rounded-lg h-6 border-[#7358F9]">
-                  5 mi
-                </Button>
-                <Button size="sm" variant="outline" className="text-[10px] rounded-lg h-6 border-[#7358f9]">
-                  10 mi
-                </Button>
+                <div className="text-[10px] rounded-lg h-6 border border-[#7358F9] text-center pt-1 opacity-50">5 mi</div>
+                <div className="text-[10px] rounded-lg h-6 border border-[#7358F9] text-center pt-1 opacity-50">10 mi</div>
               </div>
             </div>
             <div>
@@ -160,17 +43,13 @@ export function CreatorSearchSection() {
                 Price Range
               </h4>
               <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <Checkbox id="budget" className="h-3 w-3" />
-                  <Label htmlFor="budget" className="text-xs text-muted-foreground">
-                    $0 - $250
-                  </Label>
+                <div className="flex items-center gap-2 opacity-50">
+                  <div className="w-3 h-3 border rounded bg-gray-200" />
+                  <span className="text-xs text-muted-foreground">$0 - $250</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Checkbox id="mid" className="h-3 w-3" />
-                  <Label htmlFor="mid" className="text-xs text-muted-foreground">
-                    $250 - $500
-                  </Label>
+                <div className="flex items-center gap-2 opacity-50">
+                  <div className="w-3 h-3 border rounded bg-gray-200" />
+                  <span className="text-xs text-muted-foreground">$250 - $500</span>
                 </div>
               </div>
             </div>
@@ -181,25 +60,18 @@ export function CreatorSearchSection() {
             <p className="text-xs text-[#7358f9] font-semibold">
               24 creators near Los Angeles, CA
             </p>
-            <div className="flex items-center gap-2">
-              <Select defaultValue="relevance">
-                <SelectTrigger className="w-[120px] h-8 rounded-lg text-xs">
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="relevance">Relevance</SelectItem>
-                  <SelectItem value="price">Price</SelectItem>
-                  <SelectItem value="rating">Rating</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button size="icon" variant="outline" className="rounded-lg h-8 w-8">
-                <LayoutGrid className="h-4 w-4" />
-              </Button>
+            <div className="flex items-center gap-2 opacity-50">
+              <div className="w-[120px] h-8 rounded-lg border text-xs text-center pt-1">Sort by</div>
+              <div className="h-8 w-8 rounded-lg border flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-4 w-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+              </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 overflow-y-auto flex-1 gap-3">
-            <Card className="bg-secondary/50 shadow-md hover:shadow-lg transition-shadow rounded-lg border-[#7358f9]">
-              <CardContent className="p-3">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-secondary/50 shadow-md rounded-lg border-[#7358f9] border">
+              <div className="p-3">
                 <div className="flex items-start gap-3 mb-2">
                   <div className="w-8 h-8 bg-muted rounded-lg flex-shrink-0 border border-[#7358F9]" />
                   <div>
@@ -207,13 +79,15 @@ export function CreatorSearchSection() {
                       <h3 className="font-heading text-xs font-semibold text-primary">
                         Michael Torres
                       </h3>
-                      <Badge variant="outline" className="ml-1 text-[8px] px-1 py-0 h-4">
+                      <div className="ml-1 text-[8px] px-1 py-0 h-4 border rounded opacity-50">
                         Verified
-                      </Badge>
+                      </div>
                     </div>
                     <p className="text-[9px] text-muted-foreground">Los Angeles, CA • 2.1 miles</p>
                     <div className="flex items-center gap-1 mt-1">
-                      <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3 text-yellow-500">
+                        <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.057-1.96 1.422L12 18.354 7.373 21.18c-.996.635-2.231-.286-1.96-1.422l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.007z" clipRule="evenodd" />
+                      </svg>
                       <span className="text-[9px] font-medium text-muted-foreground">
                         4.9 (127)
                       </span>
@@ -222,34 +96,27 @@ export function CreatorSearchSection() {
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-accent/20 text-primary rounded-md text-[9px] px-1 py-0">
+                    <div className="bg-accent/20 text-primary rounded-md text-[9px] px-1 py-0 border">
                       Photography
-                    </Badge>
+                    </div>
                     <span className="text-[10px] font-medium text-muted-foreground">From $299</span>
                   </div>
-                  <Badge
-                    variant="secondary"
-                    className="bg-green-500/20 text-green-700 rounded-md text-[9px] px-1 py-0"
-                  >
+                  <div className="bg-green-500/20 text-green-700 rounded-md text-[9px] px-1 py-0 border">
                     Available
-                  </Badge>
+                  </div>
                 </div>
                 <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 rounded-md text-[10px] py-1 h-7 border-[#7358F9] text-[#7358F9]"
-                  >
+                  <div className="flex-1 rounded-md text-[10px] py-1 h-7 border border-[#7358F9] text-[#7358F9] text-center pt-2 opacity-50">
                     View Profile
-                  </Button>
-                  <Button size="sm" className="flex-1 rounded-md text-[10px] py-1 h-7">
+                  </div>
+                  <div className="flex-1 rounded-md text-[10px] py-1 h-7 bg-[#7358F9] text-white text-center pt-2 opacity-50">
                     Invite
-                  </Button>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
-            <Card className="bg-secondary/50 shadow-md hover:shadow-lg transition-shadow rounded-lg border-[#7358f9]">
-              <CardContent className="p-3">
+              </div>
+            </div>
+            <div className="bg-secondary/50 shadow-md rounded-lg border-[#7358f9] border">
+              <div className="p-3">
                 <div className="flex items-start gap-3 mb-2">
                   <div className="w-8 h-8 bg-muted rounded-lg flex-shrink-0 border border-[#7358F9]" />
                   <div>
@@ -257,13 +124,15 @@ export function CreatorSearchSection() {
                       <h3 className="font-heading text-xs font-semibold text-primary">
                         Victoria Chen
                       </h3>
-                      <Badge variant="outline" className="ml-1 text-[8px] px-1 py-0 h-4">
+                      <div className="ml-1 text-[8px] px-1 py-0 h-4 border rounded opacity-50">
                         Verified
-                      </Badge>
+                      </div>
                     </div>
                     <p className="text-[9px] text-muted-foreground">Beverly Hills, CA • 5.3 miles</p>
                     <div className="flex items-center gap-1 mt-1">
-                      <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3 text-yellow-500">
+                        <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.057-1.96 1.422L12 18.354 7.373 21.18c-.996.635-2.231-.286-1.96-1.422l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.007z" clipRule="evenodd" />
+                      </svg>
                       <span className="text-[9px] font-medium text-muted-foreground">
                         5.0 (56)
                       </span>
@@ -272,47 +141,28 @@ export function CreatorSearchSection() {
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-accent/20 text-primary rounded-md text-[9px] px-1 py-0">
+                    <div className="bg-accent/20 text-primary rounded-md text-[9px] px-1 py-0 border">
                       Interior
-                    </Badge>
+                    </div>
                     <span className="text-[10px] font-medium text-muted-foreground">From $399</span>
                   </div>
-                  <Badge
-                    variant="secondary"
-                    className="bg-blue-500/20 text-blue-700 rounded-md text-[9px] px-1 py-0"
-                  >
+                  <div className="bg-blue-500/20 text-blue-700 rounded-md text-[9px] px-1 py-0 border">
                     Apr 15-20
-                  </Badge>
+                  </div>
                 </div>
                 <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 rounded-md text-[10px] py-1 h-7 border-[#7358F9] text-[#7358F9]"
-                  >
+                  <div className="flex-1 rounded-md text-[10px] py-1 h-7 border border-[#7358F9] text-[#7358F9] text-center pt-2 opacity-50">
                     View Profile
-                  </Button>
-                  <Button size="sm" className="flex-1 rounded-md text-[10px] py-1 h-7">
+                  </div>
+                  <div className="flex-1 rounded-md text-[10px] py-1 h-7 bg-[#7358F9] text-white text-center pt-2 opacity-50">
                     Invite
-                  </Button>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  );
-
-  return (
-    <ContainerScroll
-      titleComponent={
-        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-[#7358F9]">
-          Find the Perfect Creator for Your Project
-        </h1>
-      }
-    >
-      {creatorSearchContent}
-    </ContainerScroll>
   );
 }
