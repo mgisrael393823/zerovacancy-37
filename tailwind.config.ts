@@ -92,17 +92,24 @@ const config = {
         "border-beam": {
           "0%": { "--offset-distance": "0%" },
           "100%": { "--offset-distance": "100%" }
-        }
+        },
+        shine: {
+          "0%": { backgroundPosition: "0 0" },
+          "50%": { backgroundPosition: "100% 100%" },
+          "100%": { backgroundPosition: "0 0" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
-        "border-beam": "border-beam var(--duration) infinite linear"
+        "border-beam": "border-beam var(--duration) infinite linear",
+        "shine": "shine var(--duration) infinite linear",
       },
       backgroundImage: {
         'gradient-conic': 'conic-gradient(var(--conic-position), var(--tw-gradient-stops))',
+        'shine-size': 'repeating-linear-gradient(0deg, transparent, transparent 10px, #00000010 10px, #00000010 20px)'
       },
     },
   },
